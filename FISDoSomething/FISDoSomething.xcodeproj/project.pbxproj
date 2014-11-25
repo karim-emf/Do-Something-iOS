@@ -18,6 +18,8 @@
 		6FBDA7EE1A24FAF5001B3230 /* FISEventCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDA7E91A24FAF5001B3230 /* FISEventCard.m */; };
 		6FBDA7EF1A24FAF5001B3230 /* FISEventCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FBDA7EA1A24FAF5001B3230 /* FISEventCard.xib */; };
 		6FBDA7F01A24FAF5001B3230 /* FISEventSwipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDA7EC1A24FAF5001B3230 /* FISEventSwipeViewController.m */; };
+		6FBDA7F91A2503B7001B3230 /* FISEventDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDA7F81A2503B7001B3230 /* FISEventDetailView.m */; };
+		6FBDA7FB1A25041B001B3230 /* FISEventDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FBDA7FA1A25041B001B3230 /* FISEventDetailView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		6FBDA7EA1A24FAF5001B3230 /* FISEventCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FISEventCard.xib; sourceTree = "<group>"; };
 		6FBDA7EB1A24FAF5001B3230 /* FISEventSwipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISEventSwipeViewController.h; sourceTree = "<group>"; };
 		6FBDA7EC1A24FAF5001B3230 /* FISEventSwipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISEventSwipeViewController.m; sourceTree = "<group>"; };
+		6FBDA7F71A2503B7001B3230 /* FISEventDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FISEventDetailView.h; sourceTree = "<group>"; };
+		6FBDA7F81A2503B7001B3230 /* FISEventDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FISEventDetailView.m; sourceTree = "<group>"; };
+		6FBDA7FA1A25041B001B3230 /* FISEventDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FISEventDetailView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,17 +97,11 @@
 		6FBDA7BF1A24F911001B3230 /* FISDoSomething */ = {
 			isa = PBXGroup;
 			children = (
-				6FBDA7E61A24FAF5001B3230 /* FISMultiCardView.h */,
-				6FBDA7E71A24FAF5001B3230 /* FISMultiCardView.m */,
-				6FBDA7E81A24FAF5001B3230 /* FISEventCard.h */,
-				6FBDA7E91A24FAF5001B3230 /* FISEventCard.m */,
-				6FBDA7EA1A24FAF5001B3230 /* FISEventCard.xib */,
-				6FBDA7EB1A24FAF5001B3230 /* FISEventSwipeViewController.h */,
-				6FBDA7EC1A24FAF5001B3230 /* FISEventSwipeViewController.m */,
 				6FBDA7C41A24F911001B3230 /* AppDelegate.h */,
 				6FBDA7C51A24F911001B3230 /* AppDelegate.m */,
-				6FBDA7C71A24F911001B3230 /* ViewController.h */,
-				6FBDA7C81A24F911001B3230 /* ViewController.m */,
+				6FBDA7F31A24FE4E001B3230 /* Views */,
+				6FBDA7F21A24FE44001B3230 /* Models */,
+				6FBDA7F11A24FE35001B3230 /* View Controllers */,
 				6FBDA7CA1A24F911001B3230 /* Main.storyboard */,
 				6FBDA7CD1A24F911001B3230 /* Images.xcassets */,
 				6FBDA7CF1A24F911001B3230 /* LaunchScreen.xib */,
@@ -135,6 +134,39 @@
 				6FBDA7DB1A24F911001B3230 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6FBDA7F11A24FE35001B3230 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6FBDA7C71A24F911001B3230 /* ViewController.h */,
+				6FBDA7C81A24F911001B3230 /* ViewController.m */,
+				6FBDA7EB1A24FAF5001B3230 /* FISEventSwipeViewController.h */,
+				6FBDA7EC1A24FAF5001B3230 /* FISEventSwipeViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		6FBDA7F21A24FE44001B3230 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6FBDA7F31A24FE4E001B3230 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6FBDA7F71A2503B7001B3230 /* FISEventDetailView.h */,
+				6FBDA7F81A2503B7001B3230 /* FISEventDetailView.m */,
+				6FBDA7FA1A25041B001B3230 /* FISEventDetailView.xib */,
+				6FBDA7E81A24FAF5001B3230 /* FISEventCard.h */,
+				6FBDA7E91A24FAF5001B3230 /* FISEventCard.m */,
+				6FBDA7EA1A24FAF5001B3230 /* FISEventCard.xib */,
+				6FBDA7E61A24FAF5001B3230 /* FISMultiCardView.h */,
+				6FBDA7E71A24FAF5001B3230 /* FISMultiCardView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +252,7 @@
 				6FBDA7CC1A24F911001B3230 /* Main.storyboard in Resources */,
 				6FBDA7D11A24F911001B3230 /* LaunchScreen.xib in Resources */,
 				6FBDA7CE1A24F911001B3230 /* Images.xcassets in Resources */,
+				6FBDA7FB1A25041B001B3230 /* FISEventDetailView.xib in Resources */,
 				6FBDA7EF1A24FAF5001B3230 /* FISEventCard.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FBDA7F91A2503B7001B3230 /* FISEventDetailView.m in Sources */,
 				6FBDA7EE1A24FAF5001B3230 /* FISEventCard.m in Sources */,
 				6FBDA7C91A24F911001B3230 /* ViewController.m in Sources */,
 				6FBDA7C61A24F911001B3230 /* AppDelegate.m in Sources */,
@@ -434,6 +468,7 @@
 				6FBDA7E21A24F911001B3230 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6FBDA7E31A24F911001B3230 /* Build configuration list for PBXNativeTarget "FISDoSomethingTests" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +477,7 @@
 				6FBDA7E51A24F911001B3230 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

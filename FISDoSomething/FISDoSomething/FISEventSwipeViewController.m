@@ -7,6 +7,7 @@
 #import "FISMultiCardView.h"
 #import "FISEventCard.h"
 #import "FISEventSwipeViewController.h"
+#import "FISEventDetailView.h"
 
 @interface FISEventSwipeViewController () <FISMultiCardViewDataSource, FISMultiCardViewDelegate>
 @end
@@ -74,6 +75,50 @@
 
     [_swipeableViews removeObjectAtIndex:0];
 
+}
+
+- (void)multiCardView:(FISMultiCardView *)multiCardView didTapCardView:(UIView *)cardView
+{
+    FISEventDetailView *detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
+    detailView.frame = CGRectMake(cardView.bounds.origin.x, cardView.bounds.origin.y, [self preferredSizeForPrimaryCardView].width, [self preferredSizeForPrimaryCardView].height);
+
+    [cardView addSubview:detailView];
+
+
+    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    blurEffectView.alpha = 0.0f;
+    [blurEffectView setFrame:detailView.frame];
+    [detailView addSubview:blurEffectView];
+
+    [UIView animateWithDuration:1.0f animations:^{
+        blurEffectView.alpha = 1.0f;
+    }];
+
+
+
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(tapDetailView:)];
+    [detailView addGestureRecognizer:singleFingerTap];
+
+
+//    QCTVenue *venue = ((QCTPlaceCard *)_multiCardView.frontmostCardView).venue;
+//    QCTVenueDetailsViewController *venueDetailsViewController = [[QCTVenueDetailsViewController alloc] initWithVenue:venue];
+//    venueDetailsViewController.delegate = self;
+//    venueDetailsViewController.transitioningDelegate = self;
+//    venueDetailsViewController.modalPresentationStyle = UIModalPresentationCustom;
+//    [self presentViewController:venueDetailsViewController animated:YES completion:nil];
+}
+
+- (void)tapDetailView:(UITapGestureRecognizer *)recognizer
+{
+    recognizer.view.alpha = 1.0;
+    [UIView animateWithDuration:0.6f animations:^{
+        recognizer.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        [recognizer.view removeFromSuperview];
+    }];
 }
 
 #pragma mark Private
