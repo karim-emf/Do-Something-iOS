@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "FISDoSomethingAPI.h"
 @interface AppDelegate ()
 
 @end
@@ -16,6 +16,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [FISDoSomethingAPI retrieveAllActiveCampaignsWithCompletionHandler:^(NSArray *campaigns) {
+        [FISDoSomethingAPI retrieveMoreInfoOnCampaign:campaigns[32] withCompletionHandler:^{
+            
+        }];
+    }];
+    
+    
     // Override point for customization after application launch.
     return YES;
 }
