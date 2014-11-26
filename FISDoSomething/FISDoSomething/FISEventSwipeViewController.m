@@ -16,6 +16,7 @@
 {
     NSMutableArray *_swipeableViews;
     FISMultiCardView *_multiCardView;
+    UIVisualEffectView *_blurEffectView;
 }
 
 - (instancetype)init
@@ -23,6 +24,8 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
         _swipeableViews = [NSMutableArray array];
         _multiCardView = [[FISMultiCardView alloc] init];
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        _blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         [self fetchEvents];
     }
     return self;
@@ -79,47 +82,34 @@
 
 - (void)multiCardView:(FISMultiCardView *)multiCardView didTapCardView:(UIView *)cardView
 {
+    _blurEffectView.alpha = 0.0f;
+    _blurEffectView.frame = CGRectMake(cardView.bounds.origin.x, cardView.bounds.origin.y, [self preferredSizeForPrimaryCardView].width, [self preferredSizeForPrimaryCardView].height);
+    [cardView addSubview:_blurEffectView];
+
     FISEventDetailView *detailView = [[[NSBundle mainBundle] loadNibNamed:@"FISEventDetailView" owner:self options:nil] firstObject];
-    detailView.frame = CGRectMake(cardView.bounds.origin.x, cardView.bounds.origin.y, [self preferredSizeForPrimaryCardView].width, [self preferredSizeForPrimaryCardView].height);
-
-    [cardView addSubview:detailView];
+     detailView.frame = _blurEffectView.frame;
 
 
-    UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-    UIVisualEffectView *blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-    blurEffectView.alpha = 0.0f;
-    [blurEffectView setFrame:detailView.frame];
-    [detailView addSubview:blurEffectView];
-
-    [UIView animateWithDuration:1.0f animations:^{
-        blurEffectView.alpha = 1.0f;
+    [UIView animateWithDuration:0.7f animations:^{
+        _blurEffectView.alpha = 0.90f;
+        [_blurEffectView addSubview: detailView];
     }];
-
-
 
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(tapDetailView:)];
     [detailView addGestureRecognizer:singleFingerTap];
-
-
-//    QCTVenue *venue = ((QCTPlaceCard *)_multiCardView.frontmostCardView).venue;
-//    QCTVenueDetailsViewController *venueDetailsViewController = [[QCTVenueDetailsViewController alloc] initWithVenue:venue];
-//    venueDetailsViewController.delegate = self;
-//    venueDetailsViewController.transitioningDelegate = self;
-//    venueDetailsViewController.modalPresentationStyle = UIModalPresentationCustom;
-//    [self presentViewController:venueDetailsViewController animated:YES completion:nil];
 }
 
 - (void)tapDetailView:(UITapGestureRecognizer *)recognizer
 {
-    recognizer.view.alpha = 1.0;
-    [UIView animateWithDuration:0.6f animations:^{
-        recognizer.view.alpha = 0.0;
+    [UIView animateWithDuration:0.7f animations:^{
+        _blurEffectView.alpha = 0.0f;
     } completion:^(BOOL finished) {
-        [recognizer.view removeFromSuperview];
+        [_blurEffectView removeFromSuperview];
     }];
 }
+
 
 #pragma mark Private
 
@@ -132,47 +122,47 @@
     [_swipeableViews addObject:placeCard2];
 
     FISEventCard *placeCard13 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard13.imageView.image = [UIImage imageNamed:@"Last"];
+    placeCard13.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard13.name = @"Event 2";
     [_swipeableViews addObject:placeCard13];
 
     FISEventCard *placeCard4 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard4.imageView.image = [UIImage imageNamed:@"Chris"];
+    placeCard4.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard4.name = @"Event 3";
     [_swipeableViews addObject:placeCard4];
 
     FISEventCard *placeCard6 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard6.backgroundImage = [UIImage imageNamed:@"Greg"];
+    placeCard6.backgroundImage = [UIImage imageNamed:@"Ben"];
     placeCard6.name = @"Event 4";
     [_swipeableViews addObject:placeCard6];
 
     FISEventCard *placeCard3 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard3.imageView.image = [UIImage imageNamed:@"Bryan"];
+    placeCard3.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard3.name = @"Event 5";
     [_swipeableViews addObject:placeCard3];
 
     FISEventCard *placeCard7 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard7.imageView.image = [UIImage imageNamed:@"Jerry"];
+    placeCard7.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard7.name = @"Event 6";
     [_swipeableViews addObject:placeCard7];
 
     FISEventCard *placeCard1 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard1.imageView.image = [UIImage imageNamed:@"Aaron"];
+    placeCard1.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard1.name = @"Event 7";
     [_swipeableViews addObject:placeCard1];
 
     FISEventCard *placeCard8 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard8.imageView.image = [UIImage imageNamed:@"John"];
+    placeCard8.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard8.name = @"Event 8";
     [_swipeableViews addObject:placeCard8];
 
     FISEventCard *placeCard10 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard10.imageView.image = [UIImage imageNamed:@"Michael"];
+    placeCard10.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard10.name = @"Event 9";
     [_swipeableViews addObject:placeCard10];
 
     FISEventCard *placeCard5 = [[[NSBundle mainBundle] loadNibNamed:@"FISEventCard" owner:self options:nil] firstObject];
-    placeCard5.imageView.image = [UIImage imageNamed:@"Danny"];
+    placeCard5.imageView.image = [UIImage imageNamed:@"Ben"];
     placeCard5.name = @"Event 10";
     [_swipeableViews addObject:placeCard5];
 
