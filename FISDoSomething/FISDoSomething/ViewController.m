@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "FISEventSwipeViewController.h"
 
 @interface ViewController ()
 
@@ -14,9 +15,11 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    FISEventSwipeViewController *eventSwipeViewController = [[FISEventSwipeViewController alloc] init];
+
+    [self presentViewController:eventSwipeViewController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
