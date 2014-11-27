@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FISDoSomethingAPI.h"
+#import "FISCampaign.h"
 @interface AppDelegate ()
 
 @end
@@ -18,9 +19,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [FISDoSomethingAPI retrieveAllActiveCampaignsWithCompletionHandler:^(NSArray *campaigns) {
-        [FISDoSomethingAPI retrieveMoreInfoOnCampaign:campaigns[32] withCompletionHandler:^{
+        
+        [FISDoSomethingAPI retrieveMoreInfoOnCampaign:campaigns[169] withCompletionHandler:^{
+            
+            [FISDoSomethingAPI retrieveImageForCampaign:campaigns[169] inLandscape:NO withCompletionHandler:^(UIImage *image) {
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.window.rootViewController.view.frame];
+                    imageView.image = image;
+                    imageView.contentMode = UIViewContentModeScaleAspectFill;
+                    [self.window.rootViewController.view addSubview:imageView];
+                }];
+                 
+            }];
+
             
         }];
+        
     }];
     
     

@@ -7,11 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @class FISCampaign;
 @interface FISDoSomethingAPI : NSObject
 
+//  Basic Campaign Info
 + (void)retrieveAllActiveCampaignsWithCompletionHandler:(void (^)(NSArray * campaigns))completionHandler;
 
-+ (void)retrieveMoreInfoOnCampaign:(FISCampaign *)campaign withCompletionHandler:(void (^)())completionHandler;
 
+// Advanced Campaign Info
++ (void)retrieveMoreInfoOnCampaign:(FISCampaign *)campaign
+             withCompletionHandler:(void (^)())completionHandler;
+
+// Download image for campaign
++ (void)retrieveImageForCampaign:(FISCampaign *)campaign
+                     inLandscape:(BOOL)landscape
+           withCompletionHandler:(void (^)(UIImage *image))completionHandler;
 @end
